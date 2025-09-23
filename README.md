@@ -90,4 +90,4 @@ npm wrangler tail
 ├── tsconfig.json       # TypeScript configuration
 └── README.md           # This documentation
 ```
-(Same as that of LLM Chat Application)
+(Same as that of LLM Chat Application template)
