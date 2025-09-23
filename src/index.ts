@@ -15,7 +15,7 @@ const MODEL_ID = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 
 // Default system prompt
 const SYSTEM_PROMPT =
-  "You are a helpful, friendly assistant. Provide concise and accurate responses.";
+  "You are an AI Travel Buddy. Provide travel recommendations including places to visit, local food, and activities.";
 
 export default {
   /**
@@ -52,39 +52,36 @@ export default {
 /**
  * Handles chat API requests
  */
+let sessionHistory = [];
 async function handleChatRequest(
   request: Request,
   env: Env,
 ): Promise<Response> {
   try {
-    // Parse JSON request body
-    const { messages = [] } = (await request.json()) as {
-      messages: ChatMessage[];
-    };
+    const { messages = [] } = await request.json();
 
-    // Add system prompt if not present
     if (!messages.some((msg) => msg.role === "system")) {
       messages.unshift({ role: "system", content: SYSTEM_PROMPT });
     }
 
-    const response = await env.AI.run(
+    // Appending messages to sessionHistory
+    sessionHistory.push(...messages);
+
+    // Call the LLM with the full session history
+    const response = await env2.AI.run(
       MODEL_ID,
       {
-        messages,
-        max_tokens: 1024,
+        messages: sessionHistory,
+        max_tokens: 1024
       },
-      {
-        returnRawResponse: true,
-        // Uncomment to use AI Gateway
-        // gateway: {
-        //   id: "YOUR_GATEWAY_ID", // Replace with your AI Gateway ID
-        //   skipCache: false,      // Set to true to bypass cache
-        //   cacheTtl: 3600,        // Cache time-to-live in seconds
-        // },
-      },
+      { returnRawResponse: true }
     );
 
-    // Return streaming response
+    // Add AI response to sessionHistory
+    if (response.output_text) {
+      sessionHistory.push({ role: "assistant", content: response.output_text });
+    }
+
     return response;
   } catch (error) {
     console.error("Error processing chat request:", error);
