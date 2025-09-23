@@ -1,4 +1,5 @@
 During the development of this Cloudflare Worker AI Travel Assistant project, I used ChatGPT to assist with coding, debugging, and documentation. The following summarizes the prompts and guidance I requested from the AI:
+
 -Creating a Cloudflare Worker AI project:
   I asked how to create a Cloudflare Worker AI project using the LLM Chat App template and how to connect it to GitHub, including deployment instructions and project structure.
 
