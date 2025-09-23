@@ -1,30 +1,23 @@
 # Travel Assistant based on CloudFlareLLM Chat Application Template
 
-A simple, ready-to-deploy chat application template powered by Cloudflare Workers AI. This template provides a clean starting point for building AI chat applications with streaming responses.
+This project is a Travel Assistant chatbot built using Cloudflare Workers and the LLM Chat App template. It leverages the Cloudflare Worker AI framework and provides a conversational travel assistant experience.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/llm-chat-app-template)
+Features
 
-<!-- dash-content-start -->
+- Conversational AI: Handles chat requests using a large language model (LLM).
+- Session Memory: Remembers past messages within the same chat session for contextual conversations.
+- Custom System Prompt: Modified the system prompt to behave as a travel assistant.
+- UI Template: Retains the same user interface template provided by the Cloudflare Worker AI Chat App.
+- Updated Fetch Requests: Modified the way fetch requests are handled in the code to better suit the Travel Assistant functionality.
 
-## Demo
+Implementation
 
-This template demonstrates how to build an AI-powered chat interface using Cloudflare Workers AI with streaming responses. It features:
-
-- Real-time streaming of AI responses using Server-Sent Events (SSE)
-- Easy customization of models and system prompts
-- Support for AI Gateway integration
-- Clean, responsive UI that works on mobile and desktop
-
-## Features
-
-- 💬 Simple and responsive chat interface
-- ⚡ Server-Sent Events (SSE) for streaming responses
-- 🧠 Powered by Cloudflare Workers AI LLMs
-- 🛠️ Built with TypeScript and Cloudflare Workers
-- 📱 Mobile-friendly design
-- 🔄 Maintains chat history on the client
-- 🔎 Built-in Observability logging
-<!-- dash-content-end -->
+-Built directly in Cloudflare Workers using the LLM Chat App template.
+   Code modifications include:
+      -Adjusted system prompt to align with travel assistant behavior.
+      -Enhanced chat handling to maintain context across messages in a session.
+      -Integrated session-based memory to provide better, continuous conversation.
+      -Changed the fetch request implementation to improve data handling and interaction with the LLM API.
 
 ## Getting Started
 
